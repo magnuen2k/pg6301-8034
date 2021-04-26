@@ -25,6 +25,10 @@ export const Inbox = ({ messageApi }) => {
     toggleView();
   };
 
+  const openMessage = (mid) => {
+    console.log(mid);
+  };
+
   return (
     <div className="container">
       {user ? (
@@ -36,7 +40,11 @@ export const Inbox = ({ messageApi }) => {
           {isInbox ? (
             <div>
               {inbox ? (
-                inbox.map((msg) => <div key={msg.mid}>{msg.content}</div>)
+                inbox.map((msg) => (
+                  <div onClick={() => openMessage(msg.mid)} key={msg.mid}>
+                    {msg.content}
+                  </div>
+                ))
               ) : (
                 <div>No messages</div>
               )}
