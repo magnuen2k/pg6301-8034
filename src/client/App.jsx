@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { UserContext } from "./contexts/context";
+import { WsContext } from "./contexts/context";
 import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
 import { fetchJsonData, postJsonData, deleteJsonData } from "./api/apiHandler";
@@ -8,8 +9,10 @@ import { Inbox } from "./components/Inbox";
 import { Home } from "./components/Home";
 import { Outbox } from "./components/Outbox";
 import { Reply } from "./components/Reply";
+import { useWs } from "./hooks/useWs";
 
 export const App = () => {
+  const ws = useWs();
   const [user, setUser] = useState();
   useEffect(() => {
     authApi.getUser().then((res) => setUser(res));
@@ -54,24 +57,26 @@ export const App = () => {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <Nav authApi={authApi} />
-        <Switch>
-          <Route path={"/"} exact>
-            <Home />
-          </Route>
-          <Route path={"/auth"}>
-            <Auth authApi={authApi} />
-          </Route>
-          <Route path={"/inbox"} exact>
-            <Inbox messageApi={messageApi} />
-          </Route>
-          <Route path={"/outbox"}>
-            <Outbox messageApi={messageApi} />
-          </Route>
-          <Route path={"/inbox/reply"}>
-            <Reply messageApi={messageApi} />
-          </Route>
-        </Switch>
+        <WsContext.Provider value={{ ws }}>
+          <Nav authApi={authApi} />
+          <Switch>
+            <Route path={"/"} exact>
+              <Home />
+            </Route>
+            <Route path={"/auth"}>
+              <Auth authApi={authApi} />
+            </Route>
+            <Route path={"/inbox"} exact>
+              <Inbox messageApi={messageApi} />
+            </Route>
+            <Route path={"/outbox"}>
+              <Outbox messageApi={messageApi} />
+            </Route>
+            <Route path={"/inbox/reply"}>
+              <Reply messageApi={messageApi} />
+            </Route>
+          </Switch>
+        </WsContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   );

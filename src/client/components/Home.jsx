@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
-import { UserContext } from "../contexts/context";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { UserContext, WsContext } from "../contexts/context";
+import { useWs } from "../hooks/useWs";
 
 export const Home = () => {
   const { user } = useContext(UserContext);
+  const { ws, setWs } = useContext(WsContext);
 
   if (!user) {
     return <div className="container">Sign in to use out service!</div>;

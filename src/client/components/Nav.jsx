@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/context";
+import { UserContext, WsContext } from "../contexts/context";
 import { useHistory } from "react-router-dom";
 
 export const Nav = ({ authApi }) => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
+  const { ws } = useContext(WsContext);
 
   const signOut = async () => {
     const res = await authApi.signOut();
     if (res === "done") {
       setUser(undefined);
+      //ws.close();
       history.push("/");
     }
   };

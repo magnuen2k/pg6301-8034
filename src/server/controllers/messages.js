@@ -1,13 +1,17 @@
 const Messages = require("../db/messages");
+const { sockets } = require("../websocket");
 
 const sendMessage = (req, res) => {
   const { message, to, from } = req.body;
-  console.log(message);
-  console.log(to);
-  console.log(from);
   const ok = Messages.newMessage(message, from, to);
+
+  for (let [username, socket] of sockets) {
+    if (to.includes(username)) {
+      socket.send("you got mail biiitch");
+    }
+  }
+
   if (ok) {
-    console.log("SKAL HA LAGT TIL MELDINGEN");
     res.sendStatus(200);
   }
 };

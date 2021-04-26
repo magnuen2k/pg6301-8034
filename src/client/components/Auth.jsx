@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../contexts/context";
+import { UserContext, WsContext } from "../contexts/context";
 import { Input } from "./Input";
 
 export const Auth = ({ authApi }) => {
@@ -12,6 +12,7 @@ export const Auth = ({ authApi }) => {
   const [errorCode, setErrorCode] = useState();
 
   const { user, setUser } = useContext(UserContext);
+  const { ws } = useContext(WsContext);
 
   const history = useHistory();
 
@@ -32,6 +33,7 @@ export const Auth = ({ authApi }) => {
       if (res) {
         // Set user
         setUser(res);
+        ws.send(user.username);
         // Redirect user back to home page
         history.push("/");
       }
@@ -46,11 +48,14 @@ export const Auth = ({ authApi }) => {
       if (res) {
         // Set user
         setUser(res);
+        console.log(res.username);
+        ws.send(res.username);
         // Redirect user back to home page
         history.push("/");
       }
     } catch (e) {
-      setErrorCode(e.response.status);
+      console.log(e);
+      setErrorCode(e.response);
     }
   };
 
