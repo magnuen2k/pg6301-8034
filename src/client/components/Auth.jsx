@@ -71,7 +71,7 @@ export const Auth = ({ authApi }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       {user ? (
         <div>
           <p>You are already logged in</p>
@@ -109,7 +109,11 @@ export const Auth = ({ authApi }) => {
             : "Wrong username or password"}
         </div>
       )}
-      <div onClick={googleLogin}>Login with google</div>
+      <div className="googleLogin" onClick={googleLogin}>
+        <p>
+          Click here to login with <strong>GOOGLE</strong>
+        </p>
+      </div>
     </div>
   );
 };

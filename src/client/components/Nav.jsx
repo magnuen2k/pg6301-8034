@@ -16,25 +16,10 @@ export const Nav = ({ authApi }) => {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <ul
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-          padding: "2rem 4rem",
-          width: "100%",
-          maxWidth: "1000px",
-        }}
-      >
+    <nav className="navigation">
+      <ul>
         <li>
-          <Link to="/">HOME</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/inbox">Inbox</Link>

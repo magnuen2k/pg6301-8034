@@ -26,7 +26,7 @@ export const Inbox = ({ messageApi }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       {user ? (
         <div>
           <h1>{user.username}'s Inbox</h1>

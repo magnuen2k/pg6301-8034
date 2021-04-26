@@ -45,7 +45,7 @@ export const App = () => {
         <Nav authApi={authApi} />
         <Switch>
           <Route path={"/"} exact>
-            <div>HOME</div>
+            <div className="container">HOME</div>
           </Route>
           <Route path={"/auth"}>
             <Auth authApi={authApi} />

@@ -27,6 +27,8 @@ export const Message = ({ username, onSendMessage, messageApi }) => {
     newTo.push(recipient);
     e.preventDefault();
     setFormData({ ...formData, to: newTo });
+    // Find clean way to remove state after added a recipient
+    //setRecipient("");
   };
 
   const handleSubmit = async (e) => {
@@ -36,7 +38,7 @@ export const Message = ({ username, onSendMessage, messageApi }) => {
 
   return (
     <>
-      <div>Recipients: {formData && formData.to.map((u) => u)}</div>
+      <div>RECIPIENTS: {formData && formData.to.map((u) => u)}</div>
       <form onSubmit={handleAddRecipient}>
         <label>
           Pick recipients
