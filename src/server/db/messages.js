@@ -3,7 +3,7 @@ const { getUser } = require("./auth");
 const messages = new Map();
 const recipients = new Map();
 
-let counter = 0;
+let nextAvailableId = 1;
 
 const getMessage = (mid) => {
   return messages.get(mid);
@@ -38,21 +38,31 @@ const sentMessages = (username) => {
   return sentMessages;
 };
 
-const addMessage = (msg, from, to) => {
+const replyMessage = (msg, from, to, replyTo_id) => {
+  return addMessage(msg, from, to, replyTo_id, "reply");
+};
+
+const newMessage = (msg, from, to) => {
+  return addMessage(msg, from, to, null, "new");
+};
+
+const addMessage = (msg, from, to, replyTo_id, type) => {
   const fromUser = getUser(from);
   if (!fromUser) {
     return false;
   }
-  const mid = counter++;
+  const mid = nextAvailableId++;
   const message = {
     mid: mid,
     from,
     content: msg,
     time: new Date(),
+    type,
+    replyTo_id,
   };
   const recipient = {
-    mid: mid,
-    to: to,
+    mid,
+    to,
     status: false,
   };
   messages.set(mid, message);
@@ -60,4 +70,10 @@ const addMessage = (msg, from, to) => {
   return true;
 };
 
-module.exports = { getMessage, getInbox, addMessage, sentMessages };
+module.exports = {
+  getMessage,
+  getInbox,
+  newMessage,
+  sentMessages,
+  replyMessage,
+};

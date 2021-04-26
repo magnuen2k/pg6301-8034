@@ -26,8 +26,15 @@ export const Inbox = ({ messageApi }) => {
     toggleView();
   };
 
-  const openMessage = (mid) => {
-    console.log(mid);
+  const reply = async (mid, reply, to) => {
+    const formData = {
+      message: reply,
+      from: user.username,
+      replyTo_id: mid,
+      to,
+    };
+    const res = await messageApi.replyToMessage(formData);
+    console.log(res);
   };
 
   const handleSentMessages = async () => {
@@ -46,9 +53,11 @@ export const Inbox = ({ messageApi }) => {
   return (
     <div className="container">
       <h1>{user.username}'s Inbox</h1>
-      <button onClick={toggleView}>Return to inbox</button>
+      <button onClick={toggleView}>
+        {!isInbox ? "Return to inbox" : "Send new message"}
+      </button>
       {isInbox ? (
-        <InboxView data={data} onOpenMessage={openMessage} />
+        <InboxView data={data} onReply={reply} />
       ) : (
         <SendMessage
           username={user.username}

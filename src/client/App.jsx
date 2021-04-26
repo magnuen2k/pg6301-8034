@@ -40,6 +40,9 @@ export const App = () => {
     getUserMessages: async () => {
       return await fetchJsonData("/api/messages/getUserMessages");
     },
+    replyToMessage: async (formData) => {
+      return await postJsonData("/api/messages/reply", formData);
+    },
   };
 
   return (
