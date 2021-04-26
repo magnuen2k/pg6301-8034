@@ -63,7 +63,7 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
           label="Type recipient"
           handleChange={(e) => setRecipient(e.target.value)}
         />
-        <button type="submit">Add recipient</button>
+        <button type="submit">+</button>
       </form>
       <form onSubmit={handleSubmit}>
         <Input name="message" label="message" handleChange={handleChange} />

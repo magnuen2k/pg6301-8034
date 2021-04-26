@@ -1,13 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/context";
 import { SendMessage } from "./SendMessage";
-import { useLoading } from "../hooks/useLoading";
 import { InboxView } from "./InboxView";
 
 export const Inbox = ({ messageApi }) => {
   const { user } = useContext(UserContext);
   const [isInbox, setIsInbox] = useState(true);
-  const { loading, data, error } = useLoading(() => messageApi.getInbox());
+  const [data, setData] = useState([]);
+  const [userMessages, setUserMessages] = useState();
+
+  useEffect(() => {
+    messageApi.getInbox().then((res) => {
+      if (res) {
+        setData(res);
+      }
+    });
+  }, [isInbox]);
 
   const toggleView = () => {
     setIsInbox((prevIsInbox) => !prevIsInbox);
@@ -22,15 +30,16 @@ export const Inbox = ({ messageApi }) => {
     console.log(mid);
   };
 
-  if (error) {
-    return "error view here";
-  }
+  const handleSentMessages = async () => {
+    const userMessages = await messageApi.getUserMessages();
+    setUserMessages(userMessages);
+  };
 
   if (!user) {
     return "log in please";
   }
 
-  if (!data || loading) {
+  if (!data) {
     return "loading";
   }
 
@@ -47,7 +56,10 @@ export const Inbox = ({ messageApi }) => {
           messageApi={messageApi}
         />
       )}
-      <div>Click here to see your sent messages</div>
+      {userMessages && <InboxView data={userMessages} />}
+      <div onClick={handleSentMessages}>
+        Click here to see your sent messages
+      </div>
     </div>
   );
 };

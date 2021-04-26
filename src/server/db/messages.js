@@ -20,8 +20,22 @@ const getInbox = (username) => {
       userMessages.push(messages.get(key));
     }
   }
-  console.log(userMessages);
   return userMessages;
+};
+
+const sentMessages = (username) => {
+  const user = getUser(username);
+  if (!user) {
+    return false;
+  }
+
+  let sentMessages = [];
+  for (let [key, value] of messages) {
+    if (value.from.includes(username)) {
+      sentMessages.push(messages.get(key));
+    }
+  }
+  return sentMessages;
 };
 
 const addMessage = (msg, from, to) => {
@@ -34,7 +48,7 @@ const addMessage = (msg, from, to) => {
     mid: mid,
     from,
     content: msg,
-    time: "test tid",
+    time: new Date(),
   };
   const recipient = {
     mid: mid,
@@ -46,4 +60,4 @@ const addMessage = (msg, from, to) => {
   return true;
 };
 
-module.exports = { getMessage, getInbox, addMessage };
+module.exports = { getMessage, getInbox, addMessage, sentMessages };

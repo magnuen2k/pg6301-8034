@@ -37,6 +37,9 @@ export const App = () => {
     getUsersToMessage: async () => {
       return await fetchJsonData("/api/auth/getUsersToMessage");
     },
+    getUserMessages: async () => {
+      return await fetchJsonData("/api/messages/getUserMessages");
+    },
   };
 
   return (
