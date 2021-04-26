@@ -91,6 +91,26 @@ export const Auth = ({ authApi }) => {
               handleChange={handleChange}
               type="password"
             />
+            {isSignup && (
+              <>
+                <Input
+                  name="firstName"
+                  label="First Name"
+                  handleChange={handleChange}
+                />
+                <Input
+                  name="lastName"
+                  label="Last Name"
+                  handleChange={handleChange}
+                />
+                <Input
+                  name="email"
+                  label="Email"
+                  handleChange={handleChange}
+                  type="email"
+                />
+              </>
+            )}
             <button id="submitBtn" type="submit">
               {isSignup ? "Sign Up" : "Sign In"}
             </button>

@@ -5,6 +5,8 @@ import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
 import { fetchJsonData, postJsonData } from "./api/apiHandler";
 import { Inbox } from "./components/Inbox";
+import { Home } from "./components/Home";
+import { Outbox } from "./components/Outbox";
 
 export const App = () => {
   const [user, setUser] = useState();
@@ -51,13 +53,16 @@ export const App = () => {
         <Nav authApi={authApi} />
         <Switch>
           <Route path={"/"} exact>
-            <div className="container">HOME</div>
+            <Home />
           </Route>
           <Route path={"/auth"}>
             <Auth authApi={authApi} />
           </Route>
           <Route path={"/inbox"}>
             <Inbox messageApi={messageApi} />
+          </Route>
+          <Route path={"/outbox"}>
+            <Outbox messageApi={messageApi} />
           </Route>
         </Switch>
       </UserContext.Provider>

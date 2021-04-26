@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/context";
 import { SendMessage } from "./SendMessage";
 import { InboxView } from "./InboxView";
+import { useHistory } from "react-router-dom";
 
 export const Inbox = ({ messageApi }) => {
   const { user } = useContext(UserContext);
   const [isInbox, setIsInbox] = useState(true);
   const [data, setData] = useState([]);
   const [userMessages, setUserMessages] = useState();
+  const history = useHistory();
 
   useEffect(() => {
     messageApi.getInbox().then((res) => {

@@ -10,10 +10,15 @@ const getUser = (req, res) => {
 };
 
 const signUp = (req, res) => {
-  const { username, password } = req.body;
-  console.log("we came here");
+  const { username, password, email, firstName, lastName } = req.body;
 
-  const newUser = Users.createUser(username, password);
+  const newUser = Users.createUser(
+    username,
+    password,
+    email,
+    firstName,
+    lastName
+  );
 
   if (!newUser) {
     res.status(400).send();
@@ -23,7 +28,6 @@ const signUp = (req, res) => {
   passport.authenticate("local")(req, res, () => {
     req.session.save((err) => {
       if (err) {
-        //shouldn't really happen
         res.status(500).send();
       } else {
         res.status(201).json(req.user);
@@ -46,8 +50,6 @@ const signOut = (req, res) => {
 
 const getUsersToMessageFromDb = (req, res) => {
   const usersToMessage = Users.getUsersToMessage(req.user.username);
-  //const usersToMessage = ["test"];
-  console.log(usersToMessage);
   res.send(usersToMessage);
 };
 

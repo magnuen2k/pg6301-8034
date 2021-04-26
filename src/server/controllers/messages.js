@@ -32,9 +32,10 @@ const reply = (req, res) => {
 };
 
 const getUserMessages = (req, res) => {
-  const messages = Messages.sentMessages(req.user.username);
-
-  res.send(messages);
+  if (req.user) {
+    const messages = Messages.sentMessages(req.user.username);
+    res.send(messages);
+  }
 };
 
 module.exports = { sendMessage, getUserInbox, getUserMessages, reply };
