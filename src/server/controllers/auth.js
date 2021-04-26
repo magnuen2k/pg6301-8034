@@ -1,3 +1,5 @@
+const users = require("../db/auth");
+
 const getUser = (req, res) => {
   if (req.user) {
     res.send(req.user);
@@ -18,4 +20,11 @@ const signOut = (req, res) => {
   }
 };
 
-module.exports = { getUser, signOut, signIn };
+const getUsersToMessageFromDb = (req, res) => {
+  const usersToMessage = users.getUsersToMessage(req.user.username);
+  //const usersToMessage = ["test"];
+  console.log(usersToMessage);
+  res.send(usersToMessage);
+};
+
+module.exports = { getUser, signOut, signIn, getUsersToMessageFromDb };

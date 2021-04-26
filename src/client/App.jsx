@@ -32,6 +32,9 @@ export const App = () => {
     sendMessage: async (formData) => {
       return await postJsonData("/api/messages/sendMessage", formData);
     },
+    getUsersToMessage: async () => {
+      return await fetchJsonData("/api/auth/getUsersToMessage");
+    },
   };
 
   return (

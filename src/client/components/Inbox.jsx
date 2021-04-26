@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/context";
-import { useHistory } from "react-router";
 import { Message } from "./Message";
 
 export const Inbox = ({ messageApi }) => {
@@ -10,14 +9,10 @@ export const Inbox = ({ messageApi }) => {
   console.log(user);
 
   useEffect(() => {
-    getInbox();
-  }, []);
-
-  const getInbox = async () => {
-    const inbox = await messageApi.getInbox();
-    setInbox(inbox);
-    console.log(inbox);
-  };
+    messageApi.getInbox().then((res) => {
+      setInbox(res);
+    });
+  }, [isInbox]);
 
   const toggleView = () => {
     setIsInbox((prevIsInbox) => !prevIsInbox);
@@ -26,7 +21,8 @@ export const Inbox = ({ messageApi }) => {
 
   const sendMessage = async (formData) => {
     console.log(formData);
-    const res = await messageApi.sendMessage(formData);
+    await messageApi.sendMessage(formData);
+    toggleView();
   };
 
   return (
@@ -34,7 +30,9 @@ export const Inbox = ({ messageApi }) => {
       {user ? (
         <div>
           <h1>{user.username}'s Inbox</h1>
-          <button onClick={toggleView}>Send a new message</button>
+          <button onClick={toggleView}>
+            {isInbox ? "Send a new message" : "Return to inbox"}
+          </button>
           {isInbox ? (
             <div>
               {inbox ? (
@@ -44,7 +42,11 @@ export const Inbox = ({ messageApi }) => {
               )}
             </div>
           ) : (
-            <Message username={user.username} onSendMessage={sendMessage} />
+            <Message
+              username={user.username}
+              onSendMessage={sendMessage}
+              messageApi={messageApi}
+            />
           )}
         </div>
       ) : (

@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "./Input";
-import { postJsonData } from "../api/apiHandler";
 
-export const Message = ({ username, onSendMessage }) => {
+export const Message = ({ username, onSendMessage, messageApi }) => {
+  const [users, setUsers] = useState();
   const [recipient, setRecipient] = useState("");
   const [formData, setFormData] = useState({
     to: [],
     message: "",
     from: username,
   });
+
+  useEffect(() => {
+    messageApi.getUsersToMessage().then((res) => setUsers(res));
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,6 +22,7 @@ export const Message = ({ username, onSendMessage }) => {
   };
 
   const handleAddRecipient = (e) => {
+    console.log(recipient);
     let newTo = formData.to;
     newTo.push(recipient);
     e.preventDefault();
@@ -33,9 +38,27 @@ export const Message = ({ username, onSendMessage }) => {
     <>
       <div>Recipients: {formData && formData.to.map((u) => u)}</div>
       <form onSubmit={handleAddRecipient}>
+        <label>
+          Pick recipients
+          <select
+            value={recipient}
+            name="recipients"
+            onChange={(e) => setRecipient(e.target.value)}
+          >
+            <option value="" disabled>
+              --------
+            </option>
+            {users &&
+              users.map((u) => (
+                <option key={u} value={u}>
+                  {u}
+                </option>
+              ))}
+          </select>
+        </label>
         <Input
-          name="to"
-          label="to"
+          name="recipient"
+          label="Type recipient"
           handleChange={(e) => setRecipient(e.target.value)}
         />
         <button type="submit">Add recipient</button>

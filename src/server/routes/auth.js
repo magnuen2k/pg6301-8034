@@ -2,10 +2,16 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-const { getUser, signOut, signIn } = require("../controllers/auth");
+const {
+  getUser,
+  signOut,
+  signIn,
+  getUsersToMessageFromDb,
+} = require("../controllers/auth");
 
 router.post("/signIn", passport.authenticate("local"), signIn);
 router.get("/getUser", getUser);
+router.get("/getUsersToMessage", getUsersToMessageFromDb);
 router.get("/signOut", signOut);
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 router.get(
