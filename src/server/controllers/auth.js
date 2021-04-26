@@ -1,4 +1,5 @@
-const users = require("../db/auth");
+const Users = require("../db/auth");
+const passport = require("passport");
 
 const getUser = (req, res) => {
   if (req.user) {
@@ -6,6 +7,29 @@ const getUser = (req, res) => {
   } else {
     console.log("not logged in");
   }
+};
+
+const signUp = (req, res) => {
+  const { username, password } = req.body;
+  console.log("we came here");
+
+  const newUser = Users.createUser(username, password);
+
+  if (!newUser) {
+    res.status(400).send();
+    return;
+  }
+
+  passport.authenticate("local")(req, res, () => {
+    req.session.save((err) => {
+      if (err) {
+        //shouldn't really happen
+        res.status(500).send();
+      } else {
+        res.status(201).json(req.user);
+      }
+    });
+  });
 };
 
 const signIn = (req, res) => {
@@ -21,10 +45,10 @@ const signOut = (req, res) => {
 };
 
 const getUsersToMessageFromDb = (req, res) => {
-  const usersToMessage = users.getUsersToMessage(req.user.username);
+  const usersToMessage = Users.getUsersToMessage(req.user.username);
   //const usersToMessage = ["test"];
   console.log(usersToMessage);
   res.send(usersToMessage);
 };
 
-module.exports = { getUser, signOut, signIn, getUsersToMessageFromDb };
+module.exports = { getUser, signOut, signIn, getUsersToMessageFromDb, signUp };

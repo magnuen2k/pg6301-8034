@@ -5,7 +5,6 @@ import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
 import { fetchJsonData, postJsonData } from "./api/apiHandler";
 import { Inbox } from "./components/Inbox";
-import { Message } from "./components/Message";
 
 export const App = () => {
   const [user, setUser] = useState();
@@ -22,6 +21,9 @@ export const App = () => {
     },
     signIn: async (formData) => {
       return await postJsonData("/api/auth/signIn", formData);
+    },
+    signUp: async (formData) => {
+      return await postJsonData("/api/auth/signUp", formData);
     },
   };
 

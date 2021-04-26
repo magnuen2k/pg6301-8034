@@ -6,10 +6,12 @@ const {
   getUser,
   signOut,
   signIn,
+  signUp,
   getUsersToMessageFromDb,
 } = require("../controllers/auth");
 
 router.post("/signIn", passport.authenticate("local"), signIn);
+router.post("/signUp", signUp);
 router.get("/getUser", getUser);
 router.get("/getUsersToMessage", getUsersToMessageFromDb);
 router.get("/signOut", signOut);
