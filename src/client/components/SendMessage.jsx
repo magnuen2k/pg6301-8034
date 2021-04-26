@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "./Input";
 
-export const Message = ({ username, onSendMessage, messageApi }) => {
+export const SendMessage = ({ username, onSendMessage, messageApi }) => {
   const [users, setUsers] = useState();
   const [recipient, setRecipient] = useState("");
   const [formData, setFormData] = useState({
