@@ -38,6 +38,10 @@ const sentMessages = (username) => {
   return sentMessages;
 };
 
+const deleteMessage = (mid) => {
+  return messages.delete(mid);
+};
+
 const replyMessage = (msg, from, to, replyTo_id) => {
   return addMessage(msg, from, to, replyTo_id, "reply");
 };
@@ -76,4 +80,5 @@ module.exports = {
   newMessage,
   sentMessages,
   replyMessage,
+  deleteMessage,
 };

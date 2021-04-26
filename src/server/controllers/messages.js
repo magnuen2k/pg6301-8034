@@ -38,4 +38,20 @@ const getUserMessages = (req, res) => {
   }
 };
 
-module.exports = { sendMessage, getUserInbox, getUserMessages, reply };
+const deleteMessage = (req, res, next) => {
+  const mid = parseInt(req.params.id);
+  const ok = Messages.deleteMessage(mid);
+  if (ok) {
+    console.log("yes");
+    res.sendStatus(204);
+  }
+  next();
+};
+
+module.exports = {
+  sendMessage,
+  getUserInbox,
+  getUserMessages,
+  reply,
+  deleteMessage,
+};

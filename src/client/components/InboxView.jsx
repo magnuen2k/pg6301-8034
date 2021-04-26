@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Input } from "./Input";
 
-export const InboxView = ({ data, onReply }) => {
-  const [reply, setReply] = useState("");
+export const InboxView = ({ data, onReply, onDelete }) => {
   return (
     <div className="container">
       <div>
@@ -12,14 +10,10 @@ export const InboxView = ({ data, onReply }) => {
               From: {msg.from} ({msg.time}) | Message: {msg.content}
               {onReply ? (
                 <div>
-                  <Input
-                    name="recipient"
-                    label="Type recipient"
-                    handleChange={(e) => setReply(e.target.value)}
-                  />
-                  <button onClick={() => onReply(msg.mid, reply, msg.from)}>
+                  <button onClick={() => onReply(msg.mid, msg.from)}>
                     Reply
                   </button>
+                  <button onClick={() => onDelete(msg.mid)}>Delete</button>
                 </div>
               ) : (
                 ""

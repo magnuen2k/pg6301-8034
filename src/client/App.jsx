@@ -3,10 +3,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { UserContext } from "./contexts/context";
 import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
-import { fetchJsonData, postJsonData } from "./api/apiHandler";
+import { fetchJsonData, postJsonData, deleteJsonData } from "./api/apiHandler";
 import { Inbox } from "./components/Inbox";
 import { Home } from "./components/Home";
 import { Outbox } from "./components/Outbox";
+import { Reply } from "./components/Reply";
 
 export const App = () => {
   const [user, setUser] = useState();
@@ -45,6 +46,9 @@ export const App = () => {
     replyToMessage: async (formData) => {
       return await postJsonData("/api/messages/reply", formData);
     },
+    deleteMessage: async (mid) => {
+      return await deleteJsonData(`/api/messages/delete/${mid}`);
+    },
   };
 
   return (
@@ -58,11 +62,14 @@ export const App = () => {
           <Route path={"/auth"}>
             <Auth authApi={authApi} />
           </Route>
-          <Route path={"/inbox"}>
+          <Route path={"/inbox"} exact>
             <Inbox messageApi={messageApi} />
           </Route>
           <Route path={"/outbox"}>
             <Outbox messageApi={messageApi} />
+          </Route>
+          <Route path={"/inbox/reply"}>
+            <Reply messageApi={messageApi} />
           </Route>
         </Switch>
       </UserContext.Provider>

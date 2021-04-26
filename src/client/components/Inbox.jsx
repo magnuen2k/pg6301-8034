@@ -8,7 +8,6 @@ export const Inbox = ({ messageApi }) => {
   const { user } = useContext(UserContext);
   const [isInbox, setIsInbox] = useState(true);
   const [data, setData] = useState([]);
-  const [userMessages, setUserMessages] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -28,21 +27,19 @@ export const Inbox = ({ messageApi }) => {
     toggleView();
   };
 
-  const reply = async (mid, reply, to) => {
+  const reply = async (mid, to) => {
     const formData = {
-      message: reply,
       from: user.username,
       replyTo_id: mid,
       to,
     };
-    const res = await messageApi.replyToMessage(formData);
-    console.log(res);
+    history.push("/inbox/reply", { params: formData });
   };
 
-  const handleSentMessages = async () => {
-    const userMessages = await messageApi.getUserMessages();
-    setUserMessages(userMessages);
-  };
+  /*const deleteMessage = async (mid) => {
+    await messageApi.deleteMessage(mid);
+    history.push("/");
+  };*/
 
   if (!user) {
     return "log in please";
@@ -59,7 +56,7 @@ export const Inbox = ({ messageApi }) => {
         {!isInbox ? "Return to inbox" : "Send new message"}
       </button>
       {isInbox ? (
-        <InboxView data={data} onReply={reply} />
+        <InboxView data={data} onReply={reply} /*onDelete={deleteMessage}*/ />
       ) : (
         <SendMessage
           username={user.username}
@@ -67,10 +64,6 @@ export const Inbox = ({ messageApi }) => {
           messageApi={messageApi}
         />
       )}
-      {userMessages && <InboxView data={userMessages} />}
-      <div onClick={handleSentMessages}>
-        Click here to see your sent messages
-      </div>
     </div>
   );
 };

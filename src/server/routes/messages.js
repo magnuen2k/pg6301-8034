@@ -6,11 +6,13 @@ const {
   getUserInbox,
   getUserMessages,
   reply,
+  deleteMessage,
 } = require("../controllers/messages");
 
 router.post("/sendMessage", sendMessage);
 router.get("/getInbox", getUserInbox);
 router.get("/getUserMessages", getUserMessages);
 router.post("/reply", reply);
+router.delete("/delete/:id", deleteMessage);
 
 module.exports = router;

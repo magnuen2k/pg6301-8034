@@ -12,6 +12,12 @@ export const postJsonData = async (url, jsonData) => {
   //checkResult(res, url);
 };
 
+export const deleteJsonData = async (url) => {
+  const res = await axios.delete(url);
+  return res.data;
+  //checkResult(res, url);
+};
+
 const checkResult = (res, url) => {
   if (!res.ok) {
     throw new HttpException(res, url);
