@@ -7,13 +7,13 @@ export const Nav = ({ authApi }) => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
-  /* const signOut = async () => {
-        const res = await authApi.signOut();
-        if (res === "done") {
-            setUser(undefined);
-            history.push("/");
-        }
-    };*/
+  const signOut = async () => {
+    const res = await authApi.signOut();
+    if (res === "done") {
+      setUser(undefined);
+      history.push("/");
+    }
+  };
 
   return (
     <nav
