@@ -6,8 +6,8 @@ import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
 import { fetchJsonData, postJsonData, deleteJsonData } from "./api/apiHandler";
 import { Inbox } from "./components/Inbox";
-import { Home } from "./components/Home";
 import { Outbox } from "./components/Outbox";
+import { Home } from "./components/Home";
 import { Reply } from "./components/Reply";
 import { useWs } from "./hooks/useWs";
 

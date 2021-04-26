@@ -4,7 +4,7 @@ import { useWs } from "../hooks/useWs";
 
 export const Home = () => {
   const { user } = useContext(UserContext);
-  const { ws, setWs } = useContext(WsContext);
+  const { ws } = useContext(WsContext);
 
   if (!user) {
     return <div className="container">Sign in to use out service!</div>;

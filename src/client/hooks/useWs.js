@@ -15,6 +15,8 @@ export const useWs = () => {
     };
     ws.onmessage = (event) => {
       console.log("from server", event);
+      const data = event.data;
+      console.log(data);
     };
     /*ws.onclose = (event) => {
       console.log("Closed");
