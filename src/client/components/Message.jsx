@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Input } from "./Input";
 import { postJsonData } from "../api/apiHandler";
 
-export const Message = ({ username }) => {
+export const Message = ({ username, onSendMessage }) => {
   const [recipient, setRecipient] = useState("");
   const [formData, setFormData] = useState({
     to: [],
     message: "",
     from: username,
   });
-  console.log(formData);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,17 +22,16 @@ export const Message = ({ username }) => {
     newTo.push(recipient);
     e.preventDefault();
     setFormData({ ...formData, to: newTo });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await postJsonData("api/messages/sendMessage", formData);
+    onSendMessage(formData);
   };
 
   return (
     <>
-      <div>Recipients: {formData.to.map((u) => u)}</div>
+      <div>Recipients: {formData && formData.to.map((u) => u)}</div>
       <form onSubmit={handleAddRecipient}>
         <Input
           name="to"

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/context";
 import { useHistory } from "react-router";
+import { Message } from "./Message";
 
 export const Inbox = ({ messageApi }) => {
   const { user } = useContext(UserContext);
   const [inbox, setInbox] = useState();
-  const history = useHistory();
+  const [isInbox, setIsInbox] = useState(true);
   console.log(user);
 
   useEffect(() => {
@@ -18,8 +19,14 @@ export const Inbox = ({ messageApi }) => {
     console.log(inbox);
   };
 
-  const newMessage = () => {
-    history.push("/message");
+  const toggleView = () => {
+    setIsInbox((prevIsInbox) => !prevIsInbox);
+    console.log(isInbox);
+  };
+
+  const sendMessage = async (formData) => {
+    console.log(formData);
+    const res = await messageApi.sendMessage(formData);
   };
 
   return (
@@ -27,8 +34,18 @@ export const Inbox = ({ messageApi }) => {
       {user ? (
         <div>
           <h1>{user.username}'s Inbox</h1>
-          <button onClick={newMessage}>Send a new message</button>
-          {inbox && inbox.map((msg) => <div key={msg.mid}>{msg.content}</div>)}
+          <button onClick={toggleView}>Send a new message</button>
+          {isInbox ? (
+            <div>
+              {inbox ? (
+                inbox.map((msg) => <div key={msg.mid}>{msg.content}</div>)
+              ) : (
+                <div>No messages</div>
+              )}
+            </div>
+          ) : (
+            <Message username={user.username} onSendMessage={sendMessage} />
+          )}
         </div>
       ) : (
         <div>You have to log in to see your inbox</div>

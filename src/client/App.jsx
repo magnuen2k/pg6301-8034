@@ -27,7 +27,10 @@ export const App = () => {
 
   const messageApi = {
     getInbox: async () => {
-      return await fetchJsonData("api/messages/getInbox");
+      return await fetchJsonData("/api/messages/getInbox");
+    },
+    sendMessage: async (formData) => {
+      return await postJsonData("/api/messages/sendMessage", formData);
     },
   };
 
@@ -44,9 +47,6 @@ export const App = () => {
           </Route>
           <Route path={"/inbox"}>
             <Inbox messageApi={messageApi} />
-          </Route>
-          <Route path={"/message"}>
-            <Message username={"Jagsy"} />
           </Route>
         </Switch>
       </UserContext.Provider>
