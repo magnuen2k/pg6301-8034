@@ -6,6 +6,7 @@ const session = require("express-session");
 
 //IMPORT ROUTES HERE
 const authRoutes = require("./routes/auth");
+const messageRoutes = require("./routes/messages");
 
 const app = express();
 
@@ -29,6 +30,7 @@ require("./auth/authHandling")(app);
 
 // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 app.use((req, res, next) => {

@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { UserContext } from "./contexts/context";
 import { Auth } from "./components/Auth";
 import { Nav } from "./components/Nav";
-import { fetchJsonData } from "./api/apiHandler";
+import { fetchJsonData, postJsonData } from "./api/apiHandler";
 import { Inbox } from "./components/Inbox";
 import { Message } from "./components/Message";
 
@@ -20,6 +20,15 @@ export const App = () => {
     signOut: async () => {
       return await fetchJsonData("/api/auth/signOut");
     },
+    signIn: async (formData) => {
+      return await postJsonData("/api/auth/signIn", formData);
+    },
+  };
+
+  const messageApi = {
+    getInbox: async () => {
+      return await fetchJsonData("api/messages/getInbox");
+    },
   };
 
   return (
@@ -34,10 +43,10 @@ export const App = () => {
             <Auth authApi={authApi} />
           </Route>
           <Route path={"/inbox"}>
-            <Inbox />
+            <Inbox messageApi={messageApi} />
           </Route>
           <Route path={"/message"}>
-            <Message />
+            <Message username={"Jagsy"} />
           </Route>
         </Switch>
       </UserContext.Provider>

@@ -6,6 +6,11 @@ const getUser = (req, res) => {
   }
 };
 
+const signIn = (req, res) => {
+  const user = req.user;
+  res.json(user);
+};
+
 const signOut = (req, res) => {
   if (req.user) {
     req.logout();
@@ -13,4 +18,4 @@ const signOut = (req, res) => {
   }
 };
 
-module.exports = { getUser, signOut };
+module.exports = { getUser, signOut, signIn };

@@ -1,29 +1,29 @@
 const passport = require("passport");
-/*const LocalStrategy = require("passport-local").Strategy;*/
+const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Users = require("../db/auth.js");
 require("dotenv").config();
 
 module.exports = (app) => {
-  /*passport.use(
-        new LocalStrategy(
-            {
-                usernameField: "username",
-                passwordField: "password",
-            },
-            (username, password, done) => {
-                console.log(username, password);
-                const ok = Users.verifyUser(username, password);
+  passport.use(
+    new LocalStrategy(
+      {
+        usernameField: "username",
+        passwordField: "password",
+      },
+      (username, password, done) => {
+        console.log(username, password);
+        const ok = Users.verifyUser(username, password);
 
-                if (!ok) {
-                    return done(null, false, { message: "Invalid username/password" });
-                }
+        if (!ok) {
+          return done(null, false, { message: "Invalid username/password" });
+        }
 
-                const user = Users.getUser(username);
-                return done(null, user);
-            }
-        )
-    );*/
+        const user = Users.getUser(username);
+        return done(null, user);
+      }
+    )
+  );
 
   passport.use(
     new GoogleStrategy(
@@ -43,7 +43,9 @@ module.exports = (app) => {
             // if not, add to db
             const ok = Users.createGoogleUser(
               profile.name.givenName,
-              profile.id
+              profile.name.familyName,
+              profile.email
+              //profile.id
             );
             if (!ok) {
               // Should not happen with google

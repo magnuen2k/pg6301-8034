@@ -44,14 +44,16 @@ const createUser = (username, password) => {
   return true;
 };
 
-const createGoogleUser = (username, googleId) => {
+const createGoogleUser = (username, lastName, email) => {
   if (getUser(username)) {
     return false;
   }
 
   const user = {
     username,
-    googleId,
+    firstName: username,
+    lastName,
+    email,
   };
 
   users.set(username, user);

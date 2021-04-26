@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Input } from "./Input";
 import { postJsonData } from "../api/apiHandler";
 
-export const Message = () => {
+export const Message = ({ username }) => {
   const [formData, setFormData] = useState({
     to: "",
     message: "",
+    from: username,
   });
   const handleChange = (e) => {
     setFormData({
