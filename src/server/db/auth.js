@@ -30,7 +30,7 @@ const getUser = (username) => {
 
 const getUsersToMessage = (username) => {
   let usersToMessage = [];
-  for ([key, value] of users) {
+  for (let [key, value] of users) {
     if (key === username) {
       continue;
     }

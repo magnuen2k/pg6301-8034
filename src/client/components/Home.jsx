@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext, WsContext } from "../contexts/context";
-import { useWs } from "../hooks/useWs";
+import React, { useContext } from "react";
+import { UserContext } from "../contexts/context";
 
 export const Home = ({ onSendData }) => {
   const { user } = useContext(UserContext);
-  //const { ws } = useContext(WsContext);
 
   if (!user) {
     return <div className="container">Sign in to use out service!</div>;

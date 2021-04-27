@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { InboxView } from "./InboxView";
-import { UserContext, WsContext } from "../contexts/context";
+import { UserContext } from "../contexts/context";
 
 export const Outbox = ({ messageApi }) => {
   const [userMessages, setUserMessages] = useState();

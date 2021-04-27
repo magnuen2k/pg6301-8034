@@ -13,9 +13,6 @@ const getUserInbox = (req, res) => {
   if (req.user) {
     console.log("should return all messages for one user");
     const inbox = Messages.getInbox(req.user.username);
-    if (inbox.length === 0) {
-      console.log("no messages");
-    }
     res.send(inbox);
   } else {
     res.sendStatus(400);
@@ -37,9 +34,7 @@ const getUserMessages = (req, res) => {
 
 const deleteMessage = (req, res, next) => {
   const mid = parseInt(req.params.id);
-  console.log("About to delete user from message" + mid);
   const ok = Messages.deleteMessage(mid, req.user.username);
-  console.log(ok);
   if (ok) {
     res.sendStatus(204);
   }
@@ -50,9 +45,6 @@ const getArchive = (req, res) => {
   console.log("reading archive");
   if (req.user) {
     const archive = Messages.getArchive(req.user.username);
-    if (archive.length === 0) {
-      console.log("no messages");
-    }
     res.send(archive);
   } else {
     res.sendStatus(400);
