@@ -42,7 +42,7 @@ describe("home view", () => {
     });
 
     expect(container.querySelector("div").textContent).toEqual(
-      "Sign in to use out service!"
+      "Sign in to use our service!"
     );
   });
 });

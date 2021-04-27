@@ -32,7 +32,7 @@ describe("Archive view", () => {
     );
     expect(container.innerHTML).toMatchSnapshot();
     expect(container.querySelector("h1").textContent).toEqual(
-      "Archived messages"
+      "'s archived messages"
     );
   });
   it("renders not logged in on archive page", async () => {
