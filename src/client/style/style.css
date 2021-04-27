@@ -42,3 +42,37 @@
 .message {
     border: 2px solid black;
 }
+
+.sendMessageWrapper {
+    background-color: aliceblue;
+    padding: 3rem 7rem;
+}
+
+.recipients {
+    padding: 1rem 0;
+}
+
+.addRecipient {
+    padding: 0.5rem 0;
+}
+
+.addRecipient label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+}
+
+.recipientBtn {
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+.sendMessage {
+    display: flex;
+    flex-direction: column;
+}
+
+.sendMessage button {
+    margin: 2rem 0;
+    padding: 0.5rem 2rem;
+}

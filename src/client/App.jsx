@@ -56,7 +56,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <Nav authApi={authApi} />
+        <Nav authApi={authApi} notify={notify} />
         <Switch>
           <Route path={"/"} exact>
             <Home onSendData={sendData} />

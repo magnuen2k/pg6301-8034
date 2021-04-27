@@ -78,6 +78,7 @@ const addMessage = (msg, from, to, replyTo_id, type) => {
 
 const notifyUsers = (to) => {
   for (let [username, socket] of sockets) {
+    // Should have a more strict way of searching in the array for user.
     if (to.includes(username)) {
       socket.send(JSON.stringify({ message: "u got a message" }));
     }

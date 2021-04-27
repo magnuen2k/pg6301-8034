@@ -37,9 +37,14 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
   };
 
   return (
-    <>
-      <div>RECIPIENTS: {formData && formData.to.map((u) => u)}</div>
-      <form onSubmit={handleAddRecipient}>
+    <div className="sendMessageWrapper">
+      <div className="recipients">Sender: {formData && formData.from}</div>
+      <div className="recipients">
+        Recipients: {formData && formData.to.map((u) => u)}
+      </div>
+      <hr />
+      <form className="addRecipient" onSubmit={handleAddRecipient}>
+        <p>Chose who you want to send a message to</p>
         <label>
           Pick recipients
           <select
@@ -57,18 +62,23 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
                 </option>
               ))}
           </select>
+          <Input
+            name="recipient"
+            label="Type recipient"
+            handleChange={(e) => setRecipient(e.target.value)}
+          />
         </label>
-        <Input
-          name="recipient"
-          label="Type recipient"
-          handleChange={(e) => setRecipient(e.target.value)}
-        />
-        <button type="submit">+</button>
+        <button className="recipientBtn" type="submit">
+          +
+        </button>
+        <hr />
       </form>
-      <form onSubmit={handleSubmit}>
-        <Input name="message" label="message" handleChange={handleChange} />
+      <form className="sendMessage" onSubmit={handleSubmit}>
+        <label>
+          Your message: <textarea name="message" onChange={handleChange} />
+        </label>
         <button type="submit">Send message</button>
       </form>
-    </>
+    </div>
   );
 };

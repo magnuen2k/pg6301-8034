@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext, WsContext } from "../contexts/context";
 import { useHistory } from "react-router-dom";
 
-export const Nav = ({ authApi }) => {
+export const Nav = ({ authApi, notify }) => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
   //const { ws } = useContext(WsContext);
@@ -20,6 +20,9 @@ export const Nav = ({ authApi }) => {
   return (
     <nav className="navigation">
       <ul>
+        {notify.map((notification, index) => (
+          <li key={index}>{notification.message}</li>
+        ))}
         <li>
           <Link to="/">Home</Link>
         </li>

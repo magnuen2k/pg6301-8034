@@ -16,7 +16,7 @@ export const Inbox = ({ messageApi, notify }) => {
         setData(res);
       }
     });
-  }, [isInbox]);
+  }, [isInbox, notify]);
 
   const toggleView = () => {
     setIsInbox((prevIsInbox) => !prevIsInbox);
@@ -28,6 +28,16 @@ export const Inbox = ({ messageApi, notify }) => {
   };
 
   const reply = async (mid, to) => {
+    const formData = {
+      from: user.username,
+      replyTo_id: mid,
+      to,
+    };
+    history.push("/inbox/reply", { params: formData });
+  };
+
+  const replyAll = async (mid, to) => {
+    // have ot get all users that received this message and add to "to"
     const formData = {
       from: user.username,
       replyTo_id: mid,
@@ -52,14 +62,15 @@ export const Inbox = ({ messageApi, notify }) => {
   return (
     <div className="container">
       <h1>{user.username}'s Inbox</h1>
-      {notify.map((notification, index) => (
-        <p key={index}>{notification.message}</p>
-      ))}
       <button onClick={toggleView}>
         {!isInbox ? "Return to inbox" : "Send new message"}
       </button>
       {isInbox ? (
-        <InboxView data={data} onReply={reply} /*onDelete={deleteMessage}*/ />
+        <InboxView
+          data={data}
+          onReplyAll={replyAll}
+          onReply={reply} /*onDelete={deleteMessage}*/
+        />
       ) : (
         <SendMessage
           username={user.username}
