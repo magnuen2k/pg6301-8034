@@ -60,7 +60,7 @@ export const Inbox = ({ messageApi, notify }) => {
 
   return (
     <div className="container">
-      <h1>{user.username}'s Inbox</h1>
+      <h1>{user.username}'s inbox</h1>
       <button onClick={toggleView}>
         {!isInbox ? "Return to inbox" : "Send new message"}
       </button>

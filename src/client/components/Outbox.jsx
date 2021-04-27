@@ -1,24 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
 import { InboxView } from "./InboxView";
 import { UserContext } from "../contexts/context";
+import { useLoading } from "../hooks/useLoading";
+import { LoadingView } from "./LoadingView";
+import { ErrorView } from "./ErrorView";
 
 export const Outbox = ({ messageApi }) => {
-  const [userMessages, setUserMessages] = useState();
+  const { data, loading, error } = useLoading(() =>
+    messageApi.getUserMessages()
+  );
   const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    messageApi.getUserMessages().then((res) => {
-      setUserMessages(res);
-    });
-  }, []);
 
   if (!user) {
     return <div className="container">Please log in</div>;
   }
 
-  if (!userMessages) {
+  if (error) {
+    return <ErrorView error={error} />;
+  }
+
+  if (loading) {
+    return <LoadingView />;
+  }
+
+  if (!data) {
     return <div className="container">No messages</div>;
   }
 
-  return <InboxView data={userMessages} />;
+  return (
+    <div className="container">
+      <h1>{user.username}'s outbox</h1>
+      <InboxView data={data} />
+    </div>
+  );
 };

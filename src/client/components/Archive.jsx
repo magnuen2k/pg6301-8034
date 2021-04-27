@@ -9,12 +9,12 @@ export const Archive = ({ messageApi }) => {
   const { loading, data, error } = useLoading(() => messageApi.getArchive());
   const { user } = useContext(UserContext);
 
-  if (error) {
-    return <ErrorView error={error} />;
-  }
-
   if (!user) {
     return <div className="container">Please log in</div>;
+  }
+
+  if (error) {
+    return <ErrorView error={error} />;
   }
 
   if (loading) {
@@ -27,7 +27,7 @@ export const Archive = ({ messageApi }) => {
 
   return (
     <div className="container">
-      <h1>Archived messages</h1>
+      <h1>{user.username}'s archived messages</h1>
       <InboxView data={data} />
     </div>
   );

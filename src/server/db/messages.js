@@ -70,9 +70,6 @@ const getArchive = (username) => {
   for (let recipient of recipients) {
     if (recipient.to === username && !recipient.status) {
       userMessages.push(messages.get(recipient.mid));
-      console.log("Archived true: " + recipient.status);
-    } else {
-      console.log("Archived false: " + recipient.status);
     }
   }
   return userMessages;
