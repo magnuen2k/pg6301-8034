@@ -22,5 +22,8 @@ Instead of having logged in users creating new accounts to chat with, I decided 
 *...explain about the database model and why i chose to model it like i did...*
 *...explain about further possibilities using this data model (like a mail system with threads)...*
 
+## Shortcomings
+* Form validation on sign up
+
 ## Candidate number
 * 8034

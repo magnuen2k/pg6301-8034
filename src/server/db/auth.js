@@ -49,13 +49,16 @@ const verifyUser = (username, password) => {
   return user.password === password;
 };
 
-const createUser = (username, password, email, firstname, lastname) => {
+const createUser = (username, password, email, firstName, lastName) => {
   if (getUser(username)) {
     return false;
   }
 
   const user = {
     username,
+    firstName,
+    lastName,
+    email,
     password,
   };
 
