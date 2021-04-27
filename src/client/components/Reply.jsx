@@ -16,7 +16,7 @@ export const Reply = ({ messageApi }) => {
 
   return (
     <div className="container">
-      <p>Her skal det komme meldingen du skal svare på</p>
+      <p>Reply to - {data.to}</p>
       <form onSubmit={handleSubmit}>
         <Input
           name="reply"

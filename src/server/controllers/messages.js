@@ -1,15 +1,8 @@
 const Messages = require("../db/messages");
-const { sockets } = require("../websocket");
 
 const sendMessage = (req, res) => {
   const { message, to, from } = req.body;
   const ok = Messages.newMessage(message, from, to);
-
-  /*for (let [username, socket] of sockets) {
-    if (to.includes(username)) {
-      socket.send(JSON.stringify({ message: "u got a message" }));
-    }
-  }*/
 
   if (ok) {
     res.sendStatus(200);

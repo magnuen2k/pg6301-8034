@@ -31,17 +31,19 @@ export const Inbox = ({ messageApi, notify }) => {
     const formData = {
       from: user.username,
       replyTo_id: mid,
-      to,
+      to: [to],
     };
     history.push("/inbox/reply", { params: formData });
   };
 
   const replyAll = async (mid, to) => {
+    const newTo = [to];
+    console.log(typeof newTo);
     // have ot get all users that received this message and add to "to"
     const formData = {
       from: user.username,
       replyTo_id: mid,
-      to,
+      to: newTo,
     };
     history.push("/inbox/reply", { params: formData });
   };
