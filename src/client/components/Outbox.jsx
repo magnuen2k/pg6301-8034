@@ -13,7 +13,7 @@ export const Outbox = ({ messageApi }) => {
   }, []);
 
   if (!user) {
-    return "please log in";
+    return <div>Please log in</div>;
   }
 
   if (!userMessages) {
