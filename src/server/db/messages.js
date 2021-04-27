@@ -78,12 +78,16 @@ const addMessage = (msg, from, to, replyTo_id, type) => {
   if (!fromUser) {
     return false;
   }
+  const currentTime = new Date();
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const time = hours + ":" + minutes;
   const mid = nextAvailableId++;
   const message = {
     mid,
     from,
     content: msg,
-    time: new Date(),
+    time,
     type,
     replyTo_id,
   };
