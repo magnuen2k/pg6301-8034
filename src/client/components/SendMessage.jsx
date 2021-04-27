@@ -41,7 +41,7 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
       </div>
       <hr />
       <form className="addRecipient" onSubmit={handleAddRecipient}>
-        <p>Chose who you want to send a message to</p>
+        <p>Choose who you want to send a message to</p>
         <label>
           Pick recipients
           <select

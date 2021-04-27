@@ -13,7 +13,7 @@ export const Notification = ({ notify }) => {
   }, [notify]);
 
   const handleClick = () => {
-    // setData([]);
+    setData([]);
     history.push("/inbox");
   };
 
