@@ -13,11 +13,11 @@ export const Outbox = ({ messageApi }) => {
   }, []);
 
   if (!user) {
-    return <div>Please log in</div>;
+    return <div className="container">Please log in</div>;
   }
 
   if (!userMessages) {
-    return "No messages";
+    return <div className="container">No messages</div>;
   }
 
   return <InboxView data={userMessages} />;

@@ -1,5 +1,6 @@
 import React from "react";
 
+// Component inspired from class
 export const Input = ({ name, handleChange, type, label }) => {
   return (
     <div>

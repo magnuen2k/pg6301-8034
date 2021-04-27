@@ -27,8 +27,6 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
     newTo.push(recipient);
     e.preventDefault();
     setFormData({ ...formData, to: newTo });
-    // Find clean way to remove state after added a recipient
-    //setRecipient("");
   };
 
   const handleSubmit = async (e) => {

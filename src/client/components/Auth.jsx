@@ -22,6 +22,7 @@ export const Auth = ({ authApi }) => {
       // Handle signup
       await doSignUp();
     } else {
+      // Handle signin
       await doSignIn();
     }
   };
@@ -46,12 +47,10 @@ export const Auth = ({ authApi }) => {
       if (res) {
         // Set user
         setUser(res);
-        console.log(res.username);
         // Redirect user back to home page
         history.push("/");
       }
     } catch (e) {
-      console.log(e);
       setErrorCode(e.response);
     }
   };

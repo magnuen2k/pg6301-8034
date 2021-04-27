@@ -13,15 +13,15 @@ export const Archive = ({ messageApi }) => {
   }, []);
 
   if (!user) {
-    return <div>Please log in</div>;
+    return <div className="container">Please log in</div>;
   }
 
   if (!userMessages) {
-    return "No messages";
+    return <div className="container">No messages</div>;
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Archived messages</h1>
       <InboxView data={userMessages} />
     </div>

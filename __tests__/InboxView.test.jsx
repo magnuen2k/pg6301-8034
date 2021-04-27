@@ -27,4 +27,5 @@ it("renders inbox view with a reply function", async () => {
     user
   );
   expect(container.querySelectorAll("button").length).toBe(3);
+  expect(container.innerHTML).toMatchSnapshot();
 });

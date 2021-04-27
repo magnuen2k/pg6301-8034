@@ -10,7 +10,9 @@ export const InboxView = ({ data, onReply, onReplyAll, onDelete }) => {
             .reverse()
             .map((msg) => (
               <div className="message" key={msg.mid}>
-                From: {msg.from} ({msg.time}) | Message: {msg.content}
+                <div>
+                  From: {msg.from} ({msg.time}) | Message: {msg.content}
+                </div>
                 {onReply ? (
                   <div>
                     <button onClick={() => onReply(msg.mid, msg.from)}>

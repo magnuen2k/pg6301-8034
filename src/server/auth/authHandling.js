@@ -25,11 +25,15 @@ module.exports = (app) => {
     )
   );
 
+  // Client Id and secret should be stored in a .env file
   passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        clientID:
+          process.env.GOOGLE_CLIENT_ID ||
+          "509816951210-4vb6d97c9pvs5o5csve4pi0h4r9gtv26.apps.googleusercontent.com",
+        clientSecret:
+          process.env.GOOGLE_CLIENT_SECRET || "DSCjgFFaZ3jTK4irB0BZfnz6",
         callbackURL: "/api/auth/google/callback",
       },
       function (accessToken, refreshToken, profile, cb) {
@@ -60,12 +64,10 @@ module.exports = (app) => {
   );
 
   passport.serializeUser((user, done) => {
-    //console.log(user.username, "ser");
     done(null, user.username);
   });
 
   passport.deserializeUser((username, done) => {
-    //console.log(user.username, "deSer");
     const user = Users.getUser(username);
 
     if (user) {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 
+// Component inspired from class
 export const useWs = () => {
   const [ws, setWs] = useState();
   const [notify, setNotify] = useState([]);

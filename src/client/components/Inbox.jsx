@@ -3,6 +3,7 @@ import { UserContext } from "../contexts/context";
 import { SendMessage } from "./SendMessage";
 import { InboxView } from "./InboxView";
 import { useHistory } from "react-router-dom";
+import { LoadingView } from "./LoadingView";
 
 export const Inbox = ({ messageApi, notify }) => {
   const { user } = useContext(UserContext);
@@ -36,18 +37,6 @@ export const Inbox = ({ messageApi, notify }) => {
     history.push("/inbox/reply", { params: formData });
   };
 
-  const replyAll = async (mid, to) => {
-    const newTo = [to];
-    console.log(typeof newTo);
-    // have ot get all users that received this message and add to "to"
-    const formData = {
-      from: user.username,
-      replyTo_id: mid,
-      to: newTo,
-    };
-    history.push("/inbox/reply", { params: formData });
-  };
-
   const deleteMessage = async (mid) => {
     console.log("deleting user from message: " + mid);
     await messageApi.deleteMessage(mid);
@@ -55,11 +44,11 @@ export const Inbox = ({ messageApi, notify }) => {
   };
 
   if (!user) {
-    return "log in please";
+    return <div className="container">Please log in</div>;
   }
 
   if (!data) {
-    return "loading";
+    return <LoadingView />;
   }
 
   return (
@@ -69,12 +58,7 @@ export const Inbox = ({ messageApi, notify }) => {
         {!isInbox ? "Return to inbox" : "Send new message"}
       </button>
       {isInbox ? (
-        <InboxView
-          data={data}
-          onReplyAll={replyAll}
-          onReply={reply}
-          onDelete={deleteMessage}
-        />
+        <InboxView data={data} onReply={reply} onDelete={deleteMessage} />
       ) : (
         <SendMessage
           username={user.username}

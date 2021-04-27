@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/context";
 import { useHistory } from "react-router-dom";
 
-export const Nav = ({ authApi, notify }) => {
+export const Nav = ({ authApi }) => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 

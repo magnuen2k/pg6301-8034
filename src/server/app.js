@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const session = require("express-session");
 
-//IMPORT ROUTES HERE
+// IMPORT ROUTES
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 
@@ -24,11 +24,10 @@ app.use(
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// EXEC ROUTES AND AUTH
-// auth
+// Auth handling
 require("./auth/authHandling")(app);
 
-// routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
