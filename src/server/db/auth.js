@@ -4,7 +4,7 @@
 
 const users = new Map();
 
-// default local user
+// Default local users
 const user = {
   username: "test",
   firstName: "test",

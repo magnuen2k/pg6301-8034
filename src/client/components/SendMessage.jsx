@@ -22,7 +22,6 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
   };
 
   const handleAddRecipient = (e) => {
-    console.log(recipient);
     let newTo = formData.to;
     newTo.push(recipient);
     e.preventDefault();

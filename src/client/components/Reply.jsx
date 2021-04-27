@@ -6,7 +6,6 @@ export const Reply = ({ messageApi }) => {
   const [reply, setReply] = useState("");
   const location = useLocation();
   const data = location.state.params;
-  console.log(data);
   const history = useHistory();
 
   const handleSubmit = async (e) => {

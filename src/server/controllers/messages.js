@@ -11,7 +11,6 @@ const sendMessage = (req, res) => {
 
 const getUserInbox = (req, res) => {
   if (req.user) {
-    console.log("should return all messages for one user");
     const inbox = Messages.getInbox(req.user.username);
     res.send(inbox);
   } else {
@@ -42,7 +41,6 @@ const deleteMessage = (req, res, next) => {
 };
 
 const getArchive = (req, res) => {
-  console.log("reading archive");
   if (req.user) {
     const archive = Messages.getArchive(req.user.username);
     res.send(archive);

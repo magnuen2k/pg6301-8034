@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 
-// Component inspired from class
+// Hook inspired from class
 export const useWs = () => {
   const [ws, setWs] = useState();
   const [notify, setNotify] = useState([]);
@@ -31,7 +31,6 @@ export const useWs = () => {
   useEffect(() => connect(), []);
 
   const sendData = (data) => {
-    console.log("sender til server hvem user er");
     ws.send(data);
   };
   return { sendData, notify };

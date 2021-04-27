@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// Hook inspired from class
 export const useLoading = (loadingFunction) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();

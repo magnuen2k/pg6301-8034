@@ -106,7 +106,7 @@ const addMessage = (msg, from, to, replyTo_id, type) => {
 const notifyUsers = (to) => {
   for (let [username, socket] of sockets) {
     if (to === username) {
-      socket.send(JSON.stringify({ message: "u got a message" }));
+      socket.send(JSON.stringify({ message: "You got a new message" }));
     }
   }
 };
