@@ -48,10 +48,11 @@ export const Inbox = ({ messageApi, notify }) => {
     history.push("/inbox/reply", { params: formData });
   };
 
-  /*const deleteMessage = async (mid) => {
+  const deleteMessage = async (mid) => {
+    console.log("deleting user from message: " + mid);
     await messageApi.deleteMessage(mid);
     history.push("/");
-  };*/
+  };
 
   if (!user) {
     return "log in please";
@@ -71,7 +72,8 @@ export const Inbox = ({ messageApi, notify }) => {
         <InboxView
           data={data}
           onReplyAll={replyAll}
-          onReply={reply} /*onDelete={deleteMessage}*/
+          onReply={reply}
+          onDelete={deleteMessage}
         />
       ) : (
         <SendMessage

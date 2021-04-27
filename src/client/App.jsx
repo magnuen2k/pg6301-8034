@@ -9,6 +9,7 @@ import { Outbox } from "./components/Outbox";
 import { Home } from "./components/Home";
 import { Reply } from "./components/Reply";
 import { useWs } from "./hooks/useWs";
+import { Archive } from "./components/Archive";
 
 export const App = () => {
   const { sendData, notify } = useWs();
@@ -51,6 +52,9 @@ export const App = () => {
     deleteMessage: async (mid) => {
       return await deleteJsonData(`/api/messages/delete/${mid}`);
     },
+    getArchive: async () => {
+      return await fetchJsonData("/api/messages/getArchive");
+    },
   };
 
   return (
@@ -69,6 +73,9 @@ export const App = () => {
           </Route>
           <Route path={"/outbox"}>
             <Outbox messageApi={messageApi} />
+          </Route>
+          <Route path={"/archive"}>
+            <Archive messageApi={messageApi} />
           </Route>
           <Route path={"/inbox/reply"}>
             <Reply messageApi={messageApi} />

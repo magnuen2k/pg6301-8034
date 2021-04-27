@@ -39,9 +39,30 @@ const sentMessages = (username) => {
   return sentMessages;
 };
 
-// Archive message (set status to archived?)
-const deleteMessage = (mid) => {
-  return messages.delete(mid);
+const deleteMessage = (mid, username) => {
+  return recipients.find((recipient) => {
+    if (recipient.mid === mid && recipient.to === username) {
+      recipient.status = false;
+      return true;
+    }
+  });
+};
+
+const getArchive = (username) => {
+  const user = getUser(username);
+  if (!user) {
+    return false;
+  }
+  let userMessages = [];
+  for (let recipient of recipients) {
+    if (recipient.to === username && !recipient.status) {
+      userMessages.push(messages.get(recipient.mid));
+      console.log("Archived true: " + recipient.status);
+    } else {
+      console.log("Archived false: " + recipient.status);
+    }
+  }
+  return userMessages;
 };
 
 const replyMessage = (msg, from, to, replyTo_id) => {
@@ -93,4 +114,5 @@ module.exports = {
   sentMessages,
   replyMessage,
   deleteMessage,
+  getArchive,
 };

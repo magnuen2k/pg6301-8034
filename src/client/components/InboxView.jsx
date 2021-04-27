@@ -19,12 +19,10 @@ export const InboxView = ({ data, onReply, onReplyAll, onDelete }) => {
                     <button onClick={() => onReplyAll(msg.mid, msg.from)}>
                       Reply All
                     </button>
+                    <button onClick={() => onDelete(msg.mid)}>Delete</button>
                   </div>
                 ) : (
                   ""
-                )}
-                {onDelete && (
-                  <button onClick={() => onDelete(msg.mid)}>Delete</button>
                 )}
               </div>
             ))}

@@ -32,6 +32,9 @@ export const Nav = ({ authApi, notify }) => {
         <li>
           <Link to="/outbox">Outbox</Link>
         </li>
+        <li>
+          <Link to="/archive">Archive</Link>
+        </li>
         {!user ? (
           <li>
             <Link to="/auth">Sign In</Link>
