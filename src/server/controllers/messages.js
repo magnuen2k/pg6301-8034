@@ -1,5 +1,5 @@
 const Messages = require("../db/messages");
-const { sockets } = require("../websocket");
+const { sockets, wsServer } = require("../websocket");
 
 const sendMessage = (req, res) => {
   const { message, to, from } = req.body;
@@ -7,7 +7,7 @@ const sendMessage = (req, res) => {
 
   for (let [username, socket] of sockets) {
     if (to.includes(username)) {
-      socket.send("you got mail biiitch");
+      socket.send(JSON.stringify({ message: "u got a message" }));
     }
   }
 

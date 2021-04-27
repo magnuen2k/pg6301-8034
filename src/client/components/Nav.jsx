@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 export const Nav = ({ authApi }) => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-  const { ws } = useContext(WsContext);
+  //const { ws } = useContext(WsContext);
 
   const signOut = async () => {
     const res = await authApi.signOut();

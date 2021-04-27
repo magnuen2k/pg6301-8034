@@ -4,6 +4,7 @@ import { UserContext } from "../contexts/context";
 
 export const useWs = () => {
   const [ws, setWs] = useState();
+  const [notify, setNotify] = useState([]);
   const connected = useRef(false);
 
   const connect = () => {
@@ -15,19 +16,23 @@ export const useWs = () => {
     };
     ws.onmessage = (event) => {
       console.log("from server", event);
-      const data = event.data;
-      console.log(data);
+      const { message } = JSON.parse(event.data);
+      setNotify((notify) => [...notify, { message }]);
+      console.log(message);
     };
-    /*ws.onclose = (event) => {
+    ws.onclose = (event) => {
       console.log("Closed");
       connected.current = false;
-    };*/
+    };
     ws.onerror = (event) => {
       console.log(event);
     };
   };
-  useEffect(() => {
-    connect();
-  }, []);
-  return ws;
+  useEffect(() => connect(), []);
+
+  const sendData = (data) => {
+    console.log("sender til server hvem user er");
+    ws.send(data);
+  };
+  return { sendData, notify };
 };

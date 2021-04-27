@@ -4,7 +4,7 @@ import { SendMessage } from "./SendMessage";
 import { InboxView } from "./InboxView";
 import { useHistory } from "react-router-dom";
 
-export const Inbox = ({ messageApi }) => {
+export const Inbox = ({ messageApi, notify }) => {
   const { user } = useContext(UserContext);
   const [isInbox, setIsInbox] = useState(true);
   const [data, setData] = useState([]);
@@ -52,6 +52,9 @@ export const Inbox = ({ messageApi }) => {
   return (
     <div className="container">
       <h1>{user.username}'s Inbox</h1>
+      {notify.map((notification, index) => (
+        <p key={index}>{notification.message}</p>
+      ))}
       <button onClick={toggleView}>
         {!isInbox ? "Return to inbox" : "Send new message"}
       </button>
