@@ -28,11 +28,18 @@ export const Inbox = ({ messageApi, notify }) => {
     toggleView();
   };
 
-  const reply = async (mid, to) => {
+  const reply = async (mid, to, otherRecipients) => {
+    let newTo = [];
+    if (otherRecipients) {
+      newTo = otherRecipients;
+    }
+    if (!newTo.includes(to)) {
+      newTo.push(to);
+    }
     const formData = {
       from: user.username,
       replyTo_id: mid,
-      to: [to],
+      to: newTo,
     };
     history.push("/inbox/reply", { params: formData });
   };

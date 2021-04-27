@@ -1,8 +1,9 @@
 # Exam Web Development and API Design
 
 ### Instructions to run the app
-1. Run `npm install && npm start` to install dependencies and start the app.
-2. Run `npm test` to run all tests with coverage.
+1. Run `npm install` to install dependencies.
+2. Run `npm start` to start the application.
+3. Run `npm test` to run all tests with coverage.
 
 ### Checklist
 * .env file or just hardcoded client/secret id for google

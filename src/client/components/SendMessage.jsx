@@ -37,7 +37,7 @@ export const SendMessage = ({ username, onSendMessage, messageApi }) => {
     <div className="sendMessageWrapper">
       <div className="recipients">Sender: {formData && formData.from}</div>
       <div className="recipients">
-        Recipients: {formData && formData.to.map((u) => u)}
+        Recipients: {formData && formData.to.map((u) => u + " ")}
       </div>
       <hr />
       <form className="addRecipient" onSubmit={handleAddRecipient}>

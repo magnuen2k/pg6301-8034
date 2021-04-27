@@ -18,10 +18,23 @@ const getInbox = (username) => {
   let userMessages = [];
   for (let recipient of recipients) {
     if (recipient.to === username && recipient.status) {
-      userMessages.push(messages.get(recipient.mid));
+      userMessages.push({
+        ...messages.get(recipient.mid),
+        to: getMessageRecipients(recipient.mid, username),
+      });
     }
   }
   return userMessages;
+};
+
+const getMessageRecipients = (mid, username) => {
+  let messageRecipients = [];
+  for (let recipient of recipients) {
+    if (recipient.mid === mid && recipient.to !== username) {
+      messageRecipients.push(recipient);
+    }
+  }
+  return messageRecipients;
 };
 
 const sentMessages = (username) => {

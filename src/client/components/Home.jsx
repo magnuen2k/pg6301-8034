@@ -5,7 +5,7 @@ export const Home = ({ onSendData }) => {
   const { user } = useContext(UserContext);
 
   if (!user) {
-    return <div className="container">Sign in to use out service!</div>;
+    return <div className="container">Sign in to use our service!</div>;
   }
 
   onSendData(user.username);
