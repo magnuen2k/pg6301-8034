@@ -18,9 +18,6 @@ export const Nav = ({ authApi, notify }) => {
   return (
     <nav className="navigation">
       <ul>
-        {notify.map((notification, index) => (
-          <li key={index}>{notification.message}</li>
-        ))}
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -10,6 +10,7 @@ import { Home } from "./components/Home";
 import { Reply } from "./components/Reply";
 import { useWs } from "./hooks/useWs";
 import { Archive } from "./components/Archive";
+import { Notification } from "./components/Notification";
 
 export const App = () => {
   const { sendData, notify } = useWs();
@@ -60,7 +61,8 @@ export const App = () => {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <Nav authApi={authApi} notify={notify} />
+        <Notification notify={notify} />
+        <Nav authApi={authApi} />
         <Switch>
           <Route path={"/"} exact>
             <Home onSendData={sendData} />

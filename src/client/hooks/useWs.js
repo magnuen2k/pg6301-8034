@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { UserContext } from "../contexts/context";
 
 export const useWs = () => {
   const [ws, setWs] = useState();
@@ -17,11 +16,11 @@ export const useWs = () => {
     ws.onmessage = (event) => {
       console.log("from server", event);
       const { message } = JSON.parse(event.data);
-      setNotify((notify) => [...notify, { message }]);
+      setNotify(() => [{ message }]);
       console.log(message);
     };
     ws.onclose = (event) => {
-      console.log("Closed");
+      console.log("Closed", event);
       connected.current = false;
     };
     ws.onerror = (event) => {
