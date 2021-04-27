@@ -1,4 +1,5 @@
 const { getUser } = require("./auth");
+const { sockets } = require("../websocket");
 
 const messages = new Map();
 const recipients = new Map();
@@ -57,7 +58,7 @@ const addMessage = (msg, from, to, replyTo_id, type) => {
   }
   const mid = nextAvailableId++;
   const message = {
-    mid: mid,
+    mid,
     from,
     content: msg,
     time: new Date(),
@@ -71,7 +72,16 @@ const addMessage = (msg, from, to, replyTo_id, type) => {
   };
   messages.set(mid, message);
   recipients.set(mid, recipient);
+  notifyUsers(to);
   return true;
+};
+
+const notifyUsers = (to) => {
+  for (let [username, socket] of sockets) {
+    if (to.includes(username)) {
+      socket.send(JSON.stringify({ message: "u got a message" }));
+    }
+  }
 };
 
 module.exports = {
