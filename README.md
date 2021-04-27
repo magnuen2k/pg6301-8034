@@ -4,6 +4,8 @@
 1. Run `npm install && npm start` to install dependencies and start the app.
 2. Run `npm test` to run all tests with coverage.
 
+.env file or just hardcoded client/secret id for google
+
 ## Description
 This is a messaging application where users can either sign up with providing the app a username and password etc, or use Google to sign up/in.
 The login system is using passport and are both authenticating and storing users in the backend.
