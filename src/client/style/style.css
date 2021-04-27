@@ -76,3 +76,15 @@
     margin: 2rem 0;
     padding: 0.5rem 2rem;
 }
+
+.notification {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 0 1rem;
+}
+
+.notification p {
+    padding: 0 3rem;
+    cursor: pointer;
+}
