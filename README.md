@@ -10,6 +10,14 @@ In this application, it will use my client id and secret which should be suffici
 3. To access the application  type `http://localhost:3000` in your browser.
 4. Run `npm test` to run all tests with coverage.
 
+When running the application, one can either authenticate with Google, sign up with a new Local user, or use any of these premade users:
+
+    * username: test
+    * password: test
+
+    * username: test2
+    * password: test
+
 
 ## Functionality overview
 This is a messaging application where users can either sign up with providing the app a username and password etc, or use Google to sign up/in.

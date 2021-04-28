@@ -4,7 +4,6 @@ const wsServer = new ws.Server({ noServer: true });
 const sockets = new Map();
 wsServer.on("connection", (socket) => {
   socket.on("message", (username) => {
-    console.log(username);
     sockets.set(username, socket);
   });
 });

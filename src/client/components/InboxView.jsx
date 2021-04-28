@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../contexts/context";
 
-export const InboxView = ({ data, onReply, onReplyAll, onDelete }) => {
+export const InboxView = ({ data, onReply, onDelete }) => {
   const { user } = useContext(UserContext);
   return (
     <div className="container">
@@ -28,7 +28,6 @@ export const InboxView = ({ data, onReply, onReplyAll, onDelete }) => {
                     </button>
                     <button
                       onClick={() => {
-                        console.log(msg.to.map((u) => u.to));
                         onReply(
                           msg.mid,
                           msg.from,

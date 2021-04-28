@@ -45,7 +45,6 @@ export const Inbox = ({ messageApi, notify }) => {
   };
 
   const deleteMessage = async (mid) => {
-    console.log("deleting user from message: " + mid);
     await messageApi.deleteMessage(mid);
     history.push("/");
   };
