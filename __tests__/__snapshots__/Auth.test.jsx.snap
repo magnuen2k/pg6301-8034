@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth view toggles auth views on dom 1`] = `"<div class=\\"container\\"><div><form><div><label>Username: <input name=\\"username\\"></label></div><div><label>Password: <input type=\\"password\\" name=\\"password\\"></label></div><button id=\\"submitBtn\\" type=\\"submit\\">Sign In</button></form><button id=\\"switch\\">Dont have an account yet? Sign Up</button></div><div class=\\"googleLogin\\"><p>Click here to login with <strong>GOOGLE</strong></p></div></div>"`;

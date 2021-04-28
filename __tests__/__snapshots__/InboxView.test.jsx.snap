@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inbox view with a reply function 1`] = `"<div class=\\"container\\"><div><div class=\\"message\\"><div><div>From: test () | Message: </div><div>To:  </div></div><div><button>Reply</button><button>Reply All</button><button>Delete</button></div></div></div></div>"`;

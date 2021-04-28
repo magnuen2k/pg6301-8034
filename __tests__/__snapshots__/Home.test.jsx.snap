@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home view show home on when logged in dom 1`] = `"<div class=\\"container\\"><h1>Welcome back, </h1><p>App description</p></div>"`;

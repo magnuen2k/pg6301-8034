@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loading view renders loading view 1`] = `"<div class=\\"container\\">Loading....</div>"`;

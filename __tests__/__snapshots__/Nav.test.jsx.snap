@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav view shows nav on om 1`] = `"<nav class=\\"navigation\\"><ul><li><a href=\\"/\\">Home</a></li><li><a href=\\"/inbox\\">Inbox</a></li><li><a href=\\"/outbox\\">Outbox</a></li><li><a href=\\"/archive\\">Archive</a></li><li id=\\"signOut\\" style=\\"cursor: pointer;\\">Sign Out</li></ul></nav>"`;

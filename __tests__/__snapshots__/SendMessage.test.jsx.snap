@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`send message view renders send message form 1`] = `"<div class=\\"sendMessageWrapper\\"><div class=\\"recipients\\">Sender: test</div><div class=\\"recipients\\">Recipients: </div><hr><form class=\\"addRecipient\\"><p>Choose who you want to send a message to</p><label>Pick recipients<select name=\\"recipients\\"><option value=\\"\\" disabled=\\"\\">--------</option><option value=\\"test\\">test</option></select><div><label>Type recipient: <input name=\\"recipient\\"></label></div></label><button class=\\"recipientBtn\\" type=\\"submit\\">+</button><hr></form><form class=\\"sendMessage\\"><label>Your message: <textarea name=\\"message\\"></textarea></label><button type=\\"submit\\">Send message</button></form></div>"`;

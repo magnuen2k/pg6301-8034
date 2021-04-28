@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Outbox view renders outbox on dom 1`] = `"<div class=\\"container\\"><h1>'s outbox</h1><div class=\\"container\\"><div><div class=\\"message\\"><div><div>From: test () | Message: </div><div>To:  </div></div></div></div></div></div>"`;
