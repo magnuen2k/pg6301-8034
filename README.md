@@ -23,7 +23,7 @@ When running the application, one can either authenticate with Google, sign up w
 ## Functionality overview
 This is a messaging application where users can either sign up with providing the app a username and password etc, or use Google to sign up/in.
 The login system is using passport and are both authenticating and storing users in the backend.
-All navigating is done through the menu at the top. 
+All navigation is done through the menu at the top. 
 * To sign up/in:
     * Go to the sign in page. Here you have three choices:
         1. Sign in if you have an existing user.
@@ -74,7 +74,7 @@ The first things to enhance in this application is the following:
 
 ## Structure
 1. Client:
-    * The file structure on the client is very simple. All React components are in the `components` directory. Custom hooks in `hooks`. Http functions in `api`.
+    * The file structure on the client is very simple. All React components are in the `components` directory, custom hooks in `hooks`, http functions in `api` and React context in `contexts`.
 2. Server:
     * Very simple and easy to understand. All storing of data and database service functions are in the `db` directory. Every route is in the `routes` directory, and all controllers are in the `controllers` directory.
 
