@@ -9,7 +9,7 @@ In this application, it will use my client id and secret which should be suffici
 2. Run `npm start` to start the application.
 3. To access the application  type `http://localhost:3000` in your browser.
 4. Run `npm test` to run all tests with coverage.
-    * Running my tests with full coverage should give about `72,6%`
+    * Running my tests with full coverage should give about `73%`
 
 When running the application, one can either authenticate with Google, sign up with a new Local user, or use any of these premade users:
 
